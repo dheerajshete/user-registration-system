@@ -26,6 +26,16 @@ app.get("/check", (req, res) => {
         res.json(result);
     });
 });
+
+app.get("/fix", (req, res) => {
+    db.query(
+        "ALTER TABLE users MODIFY id INT NOT NULL AUTO_INCREMENT",
+        (err) => {
+            if (err) return res.send(err.message);
+            res.send("FIXED");
+        }
+    );
+});
 app.post("/user", (req, res) => {
     console.log("🔥 REQUEST BODY:", req.body);
 

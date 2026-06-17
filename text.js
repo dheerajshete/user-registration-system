@@ -6,8 +6,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const db = mysql.createConnection({
+  host: "thomas.proxy.rlwy.net",
+  user: "root",
+  password: "VxoAgmcneeyPJziNFzEUgKDqHkIPJSAN",
+  database: "railway",
+  port: 11920,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
-const db = mysql.createConnection(process.env.DATABASE_URL);
 
 app.post("/user", (req, res) => {
     const { name, email } = req.body;

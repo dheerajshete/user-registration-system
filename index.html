@@ -15,26 +15,27 @@
   <button onclick="submit()" id="submit">sumbit</button>
   </div>
     <script>
-      function submit() {
+      async function submit() {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
 
-    fetch("https://user-registration-system.onrender.com/user", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ name, email })
-    });
-          .then(res => res.text())
-    .then(data => {
-        console.log("SERVER RESPONSE:", data);
-        alert(data);
-    })
-    .catch(err => {
+    try {
+        const res = await fetch("https://user-registration-system.onrender.com/user", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name, email })
+        });
+
+        const text = await res.text();
+        console.log("SERVER RESPONSE:", text);
+        alert(text);
+
+    } catch (err) {
         console.log("ERROR:", err);
-        alert("Request failed");
-    });
+        alert("Backend not reachable");
+    }
 }
     </script>
 </body>

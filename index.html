@@ -21,13 +21,11 @@ async function submit() {
 
     try {
         const res = await fetch("https://user-registration-system-x8p7.onrender.com/user", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ name: "test", email: "test@test.com" })
-})
-.then(r => r.text())
-.then(console.log)
-.catch(console.error);
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name, email })
         });
 
         const text = await res.text();

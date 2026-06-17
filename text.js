@@ -18,15 +18,13 @@ const db = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10
 });
-
-app.get("/fix", (req, res) => {
-    db.query(
-        "ALTER TABLE users MODIFY id INT NOT NULL AUTO_INCREMENT",
-        (err) => {
-            if (err) return res.send(err.message);
-            res.send("FIXED");
+app.get("/check", (req, res) => {
+    db.query("SHOW COLUMNS FROM users", (err, result) => {
+        if (err) {
+            return res.send(err.message);
         }
-    );
+        res.json(result);
+    });
 });
 app.post("/user", (req, res) => {
     console.log("🔥 REQUEST BODY:", req.body);

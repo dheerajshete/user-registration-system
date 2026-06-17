@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2");
+console.log("FILE LOADED");
 
 const app = express();
 app.use(cors());
@@ -19,6 +20,7 @@ const db = mysql.createPool({
 
 
 app.get("/", (req, res) => {
+    console.log("ROOT HIT");
     res.send("API WORKING");
 });
 app.post("/user", (req, res) => {
@@ -36,8 +38,8 @@ app.post("/user", (req, res) => {
 process.on("uncaughtException", (err) => {
   console.log("CRASH:", err);
 });
-app.listen(process.env.PORT || 3000, () => {
-    console.log("Server running on port 3000");
+
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+    console.log("Server running on", PORT);
 });
-
-

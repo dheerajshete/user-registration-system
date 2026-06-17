@@ -6,24 +6,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
   host: "thomas.proxy.rlwy.net",
   user: "root",
   password: "VxoAgmcneeyPJziNFzEUgKDqHkIPJSAN",
   database: "railway",
   port: 11920,
-  ssl: {
-    rejectUnauthorized: false
-  }
+  ssl: { rejectUnauthorized: false },
+  waitForConnections: true,
+  connectionLimit: 10
 });
 
-db.connect((err) => {
-  if (err) {
-    console.log("❌ DB CONNECTION FAILED:", err.message);
-  } else {
-    console.log("✅ DB CONNECTED");
-  }
-});
 
 app.get("/", (req, res) => {
     res.send("API WORKING");
@@ -40,7 +33,9 @@ app.post("/user", (req, res) => {
         }
     );
 });
-
+process.on("uncaughtException", (err) => {
+  console.log("CRASH:", err);
+});
 app.listen(process.env.PORT || 3000, () => {
     console.log("Server running on port 3000");
 });

@@ -46,7 +46,7 @@ app.post("/user", (req, res) => {
             res.send("User Saved!");
         }
     );
-)};
+});
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {

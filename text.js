@@ -9,7 +9,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   host: "thomas.proxy.rlwy.net",
   user: "root",
-  password: "@dheeraj@1805",
+  password: "VxoAgmcneeyPJziNFzEUgKDqHkIPJSAN",
   database: "railway",
   port: 11920,
   ssl: {

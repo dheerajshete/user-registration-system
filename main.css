@@ -1,0 +1,57 @@
+*{
+    background-color: rgb(187, 207, 201);
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+#main{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    align-items: center;
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.4s;
+    background-color: rgb(187, 174, 156);
+}
+
+#main:hover{
+    transform: scale(1.1);
+    box-shadow: 2px 2px 2px rgba(255, 105, 180, 0.6);
+    background-color: rgba(187, 174, 156, 0.8);
+}
+
+#submit{
+    margin-top: 30px;
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#submit:hover,#name:hover,#email:hover{
+    background-color: black;
+    color: aliceblue;
+}
+
+#head{
+    background-color: transparent;
+}
+
+#name,#email{
+    padding: 10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

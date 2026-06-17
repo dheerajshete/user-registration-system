@@ -7,10 +7,14 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
-  host: "localhost",
+  host: "thomas.proxy.rlwy.net",
   user: "root",
   password: "@dheeraj@1805",
-  database: "practice_db"
+  database: "railway",
+  port: 11920,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 app.post("/user", (req, res) => {

@@ -26,6 +26,15 @@
         },
         body: JSON.stringify({ name, email })
     });
+          .then(res => res.text())
+    .then(data => {
+        console.log("SERVER RESPONSE:", data);
+        alert(data);
+    })
+    .catch(err => {
+        console.log("ERROR:", err);
+        alert("Request failed");
+    });
 }
     </script>
 </body>

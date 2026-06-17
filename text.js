@@ -17,6 +17,14 @@ const db = mysql.createConnection({
   }
 });
 
+db.connect((err) => {
+  if (err) {
+    console.log("❌ DB CONNECTION FAILED:", err.message);
+  } else {
+    console.log("✅ DB CONNECTED");
+  }
+});
+
 
 app.post("/user", (req, res) => {
     const { name, email } = req.body;

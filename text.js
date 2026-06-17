@@ -20,9 +20,13 @@ const db = mysql.createPool({
 });
 
 
-app.get("/", (req, res) => {
-    console.log("ROOT HIT");
-    res.send("API WORKING");
+app.get("/check", (req, res) => {
+    db.query("SHOW COLUMNS FROM users", (err, result) => {
+        if (err) {
+            return res.send(err.message);
+        }
+        res.json(result);
+    });
 });
 app.post("/user", (req, res) => {
     console.log("🔥 REQUEST BODY:", req.body);

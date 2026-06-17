@@ -29,10 +29,11 @@ app.post("/user", (req, res) => {
     db.query(
         "INSERT INTO users(name,email) VALUES (?,?)",
         [name, email],
-        (err) => {
-            if (err) return res.send("Error");
-            res.send("User Saved!");
-        }
+        (err, result) => {
+            if (err) {
+                console.log("DB ERROR:", err);
+                return res.status(500).send(err.sqlMessage || "DB Error");
+            }
     );
 });
 process.on("uncaughtException", (err) => {

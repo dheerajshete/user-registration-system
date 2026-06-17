@@ -25,7 +25,9 @@ db.connect((err) => {
   }
 });
 
-
+app.get("/", (req, res) => {
+    res.send("API WORKING");
+});
 app.post("/user", (req, res) => {
     const { name, email } = req.body;
 

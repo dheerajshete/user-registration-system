@@ -25,23 +25,25 @@ app.get("/", (req, res) => {
     res.send("API WORKING");
 });
 app.post("/user", (req, res) => {
+    console.log("🔥 REQUEST BODY:", req.body);
+
     const { name, email } = req.body;
+
+    if (!name || !email) {
+        return res.status(400).send("Missing name or email");
+    }
 
     db.query(
         "INSERT INTO users(name,email) VALUES (?,?)",
         [name, email],
         (err, result) => {
             if (err) {
-                console.log("DB ERROR:", err);
-                return res.status(500).send(err.sqlMessage || "DB Error");
+                console.log("💥 MYSQL ERROR:", err);
+                return res.status(500).send(err.message);
             }
-    );
-});
-process.on("uncaughtException", (err) => {
-  console.log("CRASH:", err);
-});
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log("Server running on", PORT);
+            console.log("✅ INSERT SUCCESS");
+            res.send("User Saved!");
+        }
+    );
 });
